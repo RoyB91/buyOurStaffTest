@@ -9,19 +9,19 @@ public class IndexPage extends BasePage {
     private WebDriver driver;
 
     @FindBy(xpath = "//li[@class='nav-item']//*[text() = 'Shop']")
-    private WebElement shopButton;
+    private WebElement shopTab;
     @FindBy(xpath = "//li[@class='nav-item']//*[text() = 'Cart']")
-    private WebElement cartButton;
+    private WebElement cartTab;
     @FindBy(xpath = "//li[@class='nav-item']//*[text() = 'Login']")
-    private WebElement loginButton;
+    private WebElement loginTab;
     @FindBy(xpath = "//li[@class='nav-item']//*[text() = 'Logout']")
-    private WebElement logoutButton;
+    private WebElement logoutTab;
 
     @FindBy(xpath = "//*[contains(text(),'Categories')]")
-    private WebElement categoriesButton;
+    private WebElement categoriesTab;
 
     @FindBy(xpath = "//*[contains(text(),'Suppliers')]")
-    private WebElement suppliersButton;
+    private WebElement suppliersTab;
 
 
     @FindBy(xpath = "//div[@class='logged-in-name']")
@@ -42,30 +42,40 @@ public class IndexPage extends BasePage {
     }
 
     public WebElement getShopButton() {
-        return shopButton;
+        return shopTab;
     }
 
     public WebElement getCartButton() {
-        return cartButton;
+        return cartTab;
     }
 
     public WebElement getLoginButton() {
-        return loginButton;
+        return loginTab;
     }
 
     public WebElement getLogoutButton() {
-        return logoutButton;
+        return logoutTab;
     }
 
     public WebElement getCategoriesButton() {
-        return categoriesButton;
+        return categoriesTab;
     }
 
     public WebElement getSuppliersButton() {
-        return suppliersButton;
+        return suppliersTab;
     }
 
     public WebElement addToSpecificItem(String itemName) {
         return driver.findElement(By.xpath("//h4[@class='card-title' and text()='" + itemName + "']/parent::*/following-sibling::div//form"));
     }
+
+    public WebElement pickCategory(String categoryName) {
+        return driver.findElement(By.xpath("//button[@class='dropdown-item' and text()='" + categoryName + "']"));
+    }
+
+    public WebElement pickSupplier(String supplierName) {
+        return driver.findElement(By.xpath("//button[@class='dropdown-item' and text()='" + supplierName + "']"));
+    }
+
+
 }
