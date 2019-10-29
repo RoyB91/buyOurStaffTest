@@ -23,6 +23,12 @@ public class IndexPage extends BasePage {
     @FindBy(xpath = "//*[contains(text(),'Suppliers')]")
     private WebElement suppliersTab;
 
+    @FindBy(xpath = "//*[@id='shopping-cart-image']")
+    private WebElement cartIcon;
+
+//    @FindBy(xpath = "//a[@class='nav-link disabled'][contains(text(),'Cart')]")
+//    private WebElement disabledCartTab;
+
 
     @FindBy(xpath = "//div[@class='logged-in-name']")
     private WebElement loggedUserName;
@@ -65,8 +71,13 @@ public class IndexPage extends BasePage {
         return suppliersTab;
     }
 
-    public WebElement addToSpecificItem(String itemName) {
+    public WebElement selectSpecificItem(String itemName) {
         return driver.findElement(By.xpath("//h4[@class='card-title' and text()='" + itemName + "']/parent::*/following-sibling::div//form"));
+
+    }
+
+    public void addItemToCart(String itemName) {
+        selectSpecificItem(itemName).click();
     }
 
     public WebElement pickCategory(String categoryName) {
@@ -78,4 +89,21 @@ public class IndexPage extends BasePage {
     }
 
 
+    public void openIndexPage() {
+        driver.navigate().to(getBaseURL());
+    }
+
+
+    public void selectCategory(String categoryName) {
+        categoriesTab.click();
+        pickCategory(categoryName).click();
+    }
+
+    public WebElement getCartIcon() {
+        return cartIcon;
+    }
+
+    public void openCart() {
+        cartIcon.click();
+    }
 }

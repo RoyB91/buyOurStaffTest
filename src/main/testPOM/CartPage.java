@@ -37,4 +37,5 @@ public class CartPage extends BasePage {
     public WebElement getCheckoutButton() {
         return checkoutButton;
     }
+
 }

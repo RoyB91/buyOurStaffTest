@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class Register {
+public class RegisterTest {
 
     private RegisterPage registerPage = new RegisterPage();
     private LoginPage loginPage = new LoginPage();
@@ -14,14 +14,11 @@ public class Register {
     private Util util = new Util();
 
 
-
     @ParameterizedTest
     @CsvFileSource(resources = "resources/RegisterData.csv", numLinesToSkip = 1)
     public void registerWithLongUsername(String username, String password) {
 
-        registerPage.fillUsernameField(username);
-        registerPage.fillPasswordField(password);
-        registerPage.clickRegisterButton();
+        registerPage.loginWithGivenData(username, password);
 
         assertTrue(util.isElementDisplayed(indexPage.getLoginTab()));
 
@@ -33,9 +30,7 @@ public class Register {
         String username = util.generateString();
         String password = util.generateString();
 
-        registerPage.fillUsernameField(username);
-        registerPage.fillPasswordField(password);
-        registerPage.clickRegisterButton();
+        registerPage.loginWithGivenData(username, password);
 
         assertTrue(util.isElementDisplayed(indexPage.getLoginTab()));
 
