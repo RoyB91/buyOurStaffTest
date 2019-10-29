@@ -41,31 +41,41 @@ public class IndexPage extends BasePage {
         return loggedUserName.getText();
     }
 
-    public WebElement getShopTab() {
+    public WebElement getShopButton() {
         return shopTab;
     }
 
-    public WebElement getCartTab() {
+    public WebElement getCartButton() {
         return cartTab;
     }
 
-    public WebElement getLoginTab() {
+    public WebElement getLoginButton() {
         return loginTab;
     }
 
-    public WebElement getLogoutTab() {
+    public WebElement getLogoutButton() {
         return logoutTab;
     }
 
-    public WebElement getCategoriesTab() {
+    public WebElement getCategoriesButton() {
         return categoriesTab;
     }
 
-    public WebElement getSuppliersTab() {
+    public WebElement getSuppliersButton() {
         return suppliersTab;
     }
 
     public WebElement addToSpecificItem(String itemName) {
         return driver.findElement(By.xpath("//h4[@class='card-title' and text()='" + itemName + "']/parent::*/following-sibling::div//form"));
     }
+
+    public WebElement pickCategory(String categoryName) {
+        return driver.findElement(By.xpath("//button[@class='dropdown-item' and text()='" + categoryName + "']"));
+    }
+
+    public WebElement pickSupplier(String supplierName) {
+        return driver.findElement(By.xpath("//button[@class='dropdown-item' and text()='" + supplierName + "']"));
+    }
+
+
 }
