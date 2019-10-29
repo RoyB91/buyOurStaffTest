@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.nio.charset.Charset;
-import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class Register {
 
@@ -14,17 +14,17 @@ public class Register {
 
 
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "resources/RegisterData.csv", numLinesToSkip = 1)
-    public void registerWithLongUsername(String username, String password) {
-
-        registerPage.fillUsernameField(username);
-        registerPage.fillPasswordField(password);
-        registerPage.clickRegisterButton();
-
-        assertTrue(util.isElementDisplayed(indexPage.getLoginTab()));
-
-    }
+//    @ParameterizedTest
+//    @CsvFileSource(resources = "resources/RegisterData.csv", numLinesToSkip = 1)
+//    public void registerWithLongUsername(String username, String password) {
+//
+//        registerPage.fillUsernameField(username);
+//        registerPage.fillPasswordField(password);
+//        registerPage.clickRegisterButton();
+//
+//        assertTrue(util.isElementDisplayed(indexPage.getLoginTab()));
+//
+//    }
 
     @Test
     public void registerSuccessfully() {
