@@ -9,19 +9,19 @@ public class IndexPage extends BasePage {
     private WebDriver driver;
 
     @FindBy(xpath = "//li[@class='nav-item']//*[text() = 'Shop']")
-    private WebElement shopButton;
+    private WebElement shopTab;
     @FindBy(xpath = "//li[@class='nav-item']//*[text() = 'Cart']")
-    private WebElement cartButton;
+    private WebElement cartTab;
     @FindBy(xpath = "//li[@class='nav-item']//*[text() = 'Login']")
-    private WebElement loginButton;
+    private WebElement loginTab;
     @FindBy(xpath = "//li[@class='nav-item']//*[text() = 'Logout']")
-    private WebElement logoutButton;
+    private WebElement logoutTab;
 
     @FindBy(xpath = "//*[contains(text(),'Categories')]")
-    private WebElement categoriesButton;
+    private WebElement categoriesTab;
 
     @FindBy(xpath = "//*[contains(text(),'Suppliers')]")
-    private WebElement suppliersButton;
+    private WebElement suppliersTab;
 
 
     @FindBy(xpath = "//div[@class='logged-in-name']")
@@ -41,28 +41,28 @@ public class IndexPage extends BasePage {
         return loggedUserName.getText();
     }
 
-    public WebElement getShopButton() {
-        return shopButton;
+    public WebElement getShopTab() {
+        return shopTab;
     }
 
-    public WebElement getCartButton() {
-        return cartButton;
+    public WebElement getCartTab() {
+        return cartTab;
     }
 
-    public WebElement getLoginButton() {
-        return loginButton;
+    public WebElement getLoginTab() {
+        return loginTab;
     }
 
-    public WebElement getLogoutButton() {
-        return logoutButton;
+    public WebElement getLogoutTab() {
+        return logoutTab;
     }
 
-    public WebElement getCategoriesButton() {
-        return categoriesButton;
+    public WebElement getCategoriesTab() {
+        return categoriesTab;
     }
 
-    public WebElement getSuppliersButton() {
-        return suppliersButton;
+    public WebElement getSuppliersTab() {
+        return suppliersTab;
     }
 
     public WebElement addToSpecificItem(String itemName) {
