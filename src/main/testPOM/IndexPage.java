@@ -41,27 +41,27 @@ public class IndexPage extends BasePage {
         return loggedUserName.getText();
     }
 
-    public WebElement getShopButton() {
+    public WebElement getShopTab() {
         return shopTab;
     }
 
-    public WebElement getCartButton() {
+    public WebElement getCartTab() {
         return cartTab;
     }
 
-    public WebElement getLoginButton() {
+    public WebElement getLoginTab() {
         return loginTab;
     }
 
-    public WebElement getLogoutButton() {
+    public WebElement getLogoutTab() {
         return logoutTab;
     }
 
-    public WebElement getCategoriesButton() {
+    public WebElement getCategoriesTab() {
         return categoriesTab;
     }
 
-    public WebElement getSuppliersButton() {
+    public WebElement getSuppliersTab() {
         return suppliersTab;
     }
 
