@@ -26,4 +26,3 @@ hs_err_pid*
 my-app.iml
 /.idea/
 /target/
-pom.xml
