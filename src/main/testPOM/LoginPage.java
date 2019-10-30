@@ -11,6 +11,7 @@ public class LoginPage extends BasePage {
 
     private IndexPage indexPage = new IndexPage();
     private Util util = new Util();
+    private String loginURL = getBaseURL() + "login";
 
     public LoginPage() {
 
@@ -19,6 +20,34 @@ public class LoginPage extends BasePage {
 
     }
 
+    @FindBy(name = "username") private WebElement usernameField;
+    @FindBy(name = "password") private WebElement passwordField;
+    @FindBy(className = "btn-success") private WebElement loginButton;
 
+    public void directToLoginPage() {
+
+        driver.navigate().to(loginURL);
+
+    }
+
+    public void fillUsernameField(String username) {
+
+        util.waitForClickableAndClick(usernameField);
+        usernameField.sendKeys(username);
+
+    }
+
+    public void fillPasswordField(String password) {
+
+        util.waitForClickableAndClick(passwordField);
+        passwordField.sendKeys(password);
+
+    }
+
+    public void clickRegisterButton() {
+
+        util.waitForClickableAndClick(loginButton);
+
+    }
 
 }
