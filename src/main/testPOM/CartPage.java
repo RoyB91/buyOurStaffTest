@@ -19,12 +19,16 @@ public class CartPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void plusItem(String itemName) {
-        driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-plus']")).click();
+    public void plusItem(String itemName, int times) {
+        for (int i = 0; i < times; i++) {
+            driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-plus']")).click();
+        }
     }
 
-    public void minusItem(String itemName) {
-        driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-minus']")).click();
+    public void minusItem(String itemName, int times) {
+        for (int i = 0; i < times; i++) {
+            driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-minus']")).click();
+        }
     }
 
     public void deleteItem(String itemName) {

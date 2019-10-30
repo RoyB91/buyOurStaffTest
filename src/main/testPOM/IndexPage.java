@@ -94,7 +94,7 @@ public class IndexPage extends BasePage {
 
 
     public void openIndexPage() {
-        driver.navigate().to(getBaseURL()+"index");
+        driver.navigate().to(getBaseURL() + "index");
     }
 
 
@@ -112,11 +112,12 @@ public class IndexPage extends BasePage {
         cartIcon.click();
     }
 
-    public  void addSelectedItemToCart(String categoryName,String itemName){
+    public void addSelectedItemToCart(String categoryName, String itemName, int count) {
         openIndexPage();
-        selectCategory(categoryName);
-        selectSpecificItem(itemName).click();
-
+        for (int i = 0; i < count; i++) {
+            selectCategory(categoryName);
+            selectSpecificItem(itemName).click();
+        }
     }
 
 }
