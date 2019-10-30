@@ -29,4 +29,5 @@ public abstract class BasePage {
     public String getPassword() {
         return password;
     }
+
 }

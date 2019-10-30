@@ -3,10 +3,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class IndexPage extends BasePage {
 
     private WebDriver driver;
+    private WebDriverWait wait;
 
     @FindBy(xpath = "//li[@class='nav-item']//*[text() = 'Shop']")
     private WebElement shopTab;
@@ -23,6 +26,12 @@ public class IndexPage extends BasePage {
     @FindBy(xpath = "//*[contains(text(),'Suppliers')]")
     private WebElement suppliersTab;
 
+    @FindBy(xpath = "//*[@id='shopping-cart-image']")
+    private WebElement cartIcon;
+
+//    @FindBy(xpath = "//a[@class='nav-link disabled'][contains(text(),'Cart')]")
+//    private WebElement disabledCartTab;
+
 
     @FindBy(xpath = "//div[@class='logged-in-name']")
     private WebElement loggedUserName;
@@ -33,6 +42,7 @@ public class IndexPage extends BasePage {
 
     public IndexPage() {
         this.driver = getDriver();
+        this.wait = getWait();
         PageFactory.initElements(driver, this);
     }
 
@@ -65,8 +75,13 @@ public class IndexPage extends BasePage {
         return suppliersTab;
     }
 
-    public WebElement addToSpecificItem(String itemName) {
+    public WebElement selectSpecificItem(String itemName) {
         return driver.findElement(By.xpath("//h4[@class='card-title' and text()='" + itemName + "']/parent::*/following-sibling::div//form"));
+
+    }
+
+    public void addItemToCart(String itemName) {
+        selectSpecificItem(itemName).click();
     }
 
     public WebElement pickCategory(String categoryName) {
@@ -77,5 +92,31 @@ public class IndexPage extends BasePage {
         return driver.findElement(By.xpath("//button[@class='dropdown-item' and text()='" + supplierName + "']"));
     }
 
+
+    public void openIndexPage() {
+        driver.navigate().to(getBaseURL()+"index");
+    }
+
+
+    public void selectCategory(String categoryName) {
+        categoriesTab.click();
+        pickCategory(categoryName).click();
+    }
+
+    public WebElement getCartIcon() {
+        return cartIcon;
+    }
+
+    public void openCart() {
+        wait.until(ExpectedConditions.elementToBeClickable(cartIcon));
+        cartIcon.click();
+    }
+
+    public  void addSelectedItemToCart(String categoryName,String itemName){
+        openIndexPage();
+        selectCategory(categoryName);
+        selectSpecificItem(itemName).click();
+
+    }
 
 }

@@ -8,38 +8,53 @@ public class RegisterPage extends BasePage {
 
     private WebDriver driver;
     private WebDriverWait wait;
+    private String registerUrl = "register";
 
     private Util util = new Util();
 
     public RegisterPage() {
         this.driver = getDriver();
         this.wait = getWait();
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
 
     }
 
-    @FindBy(name = "username") private WebElement usernameField;
-    @FindBy(name = "password") private WebElement passwordField;
-    @FindBy(className = "btn-success") private WebElement registerButton;
+    @FindBy(name = "username")
+    private WebElement usernameField;
+    @FindBy(name = "password")
+    private WebElement passwordField;
+    @FindBy(className = "btn-success")
+    private WebElement registerButton;
 
-    public void fillUsernameField(String username) {
-
-    util.waitForClickableAndClick(usernameField);
-    usernameField.sendKeys(username);
-
-    }
-
-    public void fillPasswordField(String password) {
-
+    public void loginWithGivenData(String username, String password) {
+        driver.navigate().to(getBaseURL()+registerUrl);
+        util.waitForClickableAndClick(usernameField);
+        usernameField.sendKeys(username);
         util.waitForClickableAndClick(passwordField);
         passwordField.sendKeys(password);
-
-    }
-
-    public void clickRegisterButton() {
-
         util.waitForClickableAndClick(registerButton);
+        registerButton.click();
 
     }
+
+//    public void fillUsernameField(String username) {
+//
+//        util.waitForClickableAndClick(usernameField);
+//        usernameField.sendKeys(username);
+//
+//    }
+//
+//    public void fillPasswordField(String password) {
+//
+//        util.waitForClickableAndClick(passwordField);
+//        passwordField.sendKeys(password);
+//
+//    }
+//
+//    public void clickRegisterButton() {
+//
+//        util.waitForClickableAndClick(registerButton);
+//
+//    }
 
 }
