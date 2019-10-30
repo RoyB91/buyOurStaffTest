@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,17 +17,19 @@ public class FilterTest {
 
     }
 
-    @Test
-    public void filterByCategory() {
+    @ParameterizedTest
+    @CsvFileSource(resources = "resources/filterCategory.csv", numLinesToSkip = 1)
+    public void filterByCategory(String categoryName, String itemToValidate) {
         indexPage.openIndexPage();
-        indexPage.selectCategory("Smartphone");
-        assertTrue(indexPage.selectSpecificItem("iPhone 11").isDisplayed());
+        indexPage.selectCategory(categoryName);
+        assertTrue(indexPage.selectSpecificItem(itemToValidate).isDisplayed());
     }
 
-    @Test
-    public void filterBySupplier() {
+    @ParameterizedTest
+    @CsvFileSource(resources = "resources/filterSupplier.csv", numLinesToSkip = 1)
+    public void filterBySupplier(String supplierName,String itemToValidate) {
         indexPage.openIndexPage();
-        indexPage.selectCategory("Apple");
-        assertTrue(indexPage.selectSpecificItem("iPhone 11").isDisplayed());
+        indexPage.selectCategory(supplierName);
+        assertTrue(indexPage.selectSpecificItem(itemToValidate).isDisplayed());
     }
 }
