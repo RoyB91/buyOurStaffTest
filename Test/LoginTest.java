@@ -15,4 +15,34 @@ public class LoginTest {
 
     }
 
+    @Test
+    public void loginWithInvalidPassword() {
+
+        loginPage.directToLoginPage();
+        loginPage.fillUsernameField(loginPage.getUsername());
+        loginPage.fillPasswordField(loginPage.getIncorrectPassword());
+        loginPage.clickLoginButton();
+
+    }
+
+    @Test
+    public void loginWithUppercaseUsername() {
+
+        loginPage.directToLoginPage();
+        loginPage.fillUsernameField(loginPage.getUsername().toUpperCase());
+        loginPage.fillPasswordField(loginPage.getPassword());
+        loginPage.clickLoginButton();
+
+    }
+
+    @Test
+    public void logOut() {
+
+        loginPage.loginWitValidData();
+        loginPage.clickLogOutTab();
+
+        assertTrue(util.isElementDisplayed(indexPage.getLoginTab()));
+
+    }
+
 }
