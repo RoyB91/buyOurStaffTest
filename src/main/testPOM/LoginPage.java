@@ -29,8 +29,8 @@ public class LoginPage extends BasePage {
     public void loginWitValidData() {
 
         loginPage.directToLoginPage();
-        loginPage.fillUsernameField(username);
-        loginPage.fillPasswordField(password);
+        loginPage.fillUsernameField(getUsername());
+        loginPage.fillPasswordField(getPassword());
         loginPage.clickLoginButton();
 
     }

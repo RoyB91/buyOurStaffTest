@@ -9,7 +9,6 @@ public class LoginTest {
 
     @Test
     public void loginSuccessfully() {
-
         loginPage.loginWitValidData();
         assertTrue(util.isElementDisplayed(indexPage.getLogoutTab()));
 
