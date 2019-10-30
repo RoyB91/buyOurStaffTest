@@ -9,7 +9,9 @@ public class LoginPage extends BasePage {
     private WebDriver driver;
     private WebDriverWait wait;
     private Util util = new Util();
+    private IndexPage indexPage = new IndexPage();
     private String loginURL = getBaseURL() + "login";
+    private String incorrectPassword = "admin2";
 
     public LoginPage() {
 
@@ -56,6 +58,16 @@ public class LoginPage extends BasePage {
 
         util.waitForClickableAndClick(loginButton);
 
+    }
+
+    public void clickLogOutTab() {
+
+        util.waitForClickableAndClick(indexPage.getLogoutTab());
+
+    }
+
+    public String getIncorrectPassword() {
+        return incorrectPassword;
     }
 
 }
