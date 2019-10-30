@@ -1,4 +1,4 @@
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -15,7 +15,7 @@ public class CheckOutPageTest {
     void simpleParam(String name, String email, String phone, String billing, String shopping){
         page.checkOutLogin();
         page.fillShippingInfo(name,email,phone,billing,shopping);
-        Assert.assertTrue(page.getPaymentPageHeader().isDisplayed());
+        assertTrue(page.getPaymentPageHeader().isDisplayed());
         page.deleteItem();
     }
 
@@ -23,7 +23,7 @@ public class CheckOutPageTest {
     void payWithVisaTest(){
         page.checkOutLogin();
         page.payWithVisa();
-        Assert.assertTrue(page.getVisaButton().isDisplayed());
+        assertTrue(page.getVisaButton().isDisplayed());
         page.deleteItem();
     }
 
@@ -31,7 +31,7 @@ public class CheckOutPageTest {
     void emptyFieldTest(){
         page.checkOutLogin();
         page.emptyField();
-        Assert.assertEquals(page.getValidationmessage(),"Please fill out this field.");
+        assertEquals(page.getValidationmessage(),"Please fill out this field.");
         page.deleteItem();
     }
 
@@ -39,7 +39,7 @@ public class CheckOutPageTest {
     void payWithPayPal(){
         page.checkOutLogin();
         page.payWithPayPal();
-        Assert.assertTrue(page.getPayPalButton().isDisplayed());
+        assertTrue(page.getPayPalButton().isDisplayed());
         page.deleteItem();
     }
 }

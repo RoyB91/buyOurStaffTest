@@ -23,6 +23,7 @@ public class RegisterPage extends BasePage {
 
     @FindBy(name = "username") private WebElement usernameField;
     @FindBy(name = "password") private WebElement passwordField;
+    @FindBy(className = "error-message") WebElement errorMessage;
     @FindBy(className = "btn-success") private WebElement registerButton;
 
 
@@ -54,6 +55,10 @@ public class RegisterPage extends BasePage {
 
     public WebElement getRegisterButton() {
         return registerButton;
+    }
+
+    public WebElement getErrorMessage() {
+        return errorMessage;
     }
 
 }
