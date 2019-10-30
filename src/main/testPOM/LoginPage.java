@@ -8,11 +8,8 @@ public class LoginPage extends BasePage {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    private LoginPage loginPage = new LoginPage();
     private Util util = new Util();
     private String loginURL = getBaseURL() + "login";
-    private String username = "admin";
-    private String password = "admin1";
 
     public LoginPage() {
 
@@ -28,10 +25,10 @@ public class LoginPage extends BasePage {
 
     public void loginWitValidData() {
 
-        loginPage.directToLoginPage();
-        loginPage.fillUsernameField(username);
-        loginPage.fillPasswordField(password);
-        loginPage.clickLoginButton();
+        directToLoginPage();
+        fillUsernameField(getUsername());
+        fillPasswordField(getPassword());
+        clickLoginButton();
 
     }
 
