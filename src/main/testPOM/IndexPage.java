@@ -26,7 +26,7 @@ public class IndexPage extends BasePage {
     @FindBy(xpath = "//*[contains(text(),'Suppliers')]")
     private WebElement suppliersTab;
 
-    @FindBy(xpath = "//*[@id='shopping-cart-image']")
+    @FindBy(xpath = "//*[@id='shopping-cart-amount']/div/a")
     private WebElement cartIcon;
 
 //    @FindBy(xpath = "//a[@class='nav-link disabled'][contains(text(),'Cart')]")
@@ -81,7 +81,7 @@ public class IndexPage extends BasePage {
     }
 
     public void addItemToCart(String itemName) {
-        selectSpecificItem(itemName).click();
+        selectSpecificItem(itemName).submit();
     }
 
     public WebElement pickCategory(String categoryName) {
@@ -108,15 +108,14 @@ public class IndexPage extends BasePage {
     }
 
     public void openCart() {
-        wait.until(ExpectedConditions.elementToBeClickable(cartIcon));
+
         cartIcon.click();
     }
 
     public void addSelectedItemToCart(String categoryName, String itemName, int count) {
-        openIndexPage();
         for (int i = 0; i < count; i++) {
             selectCategory(categoryName);
-            selectSpecificItem(itemName).click();
+            addItemToCart(itemName);
         }
     }
 

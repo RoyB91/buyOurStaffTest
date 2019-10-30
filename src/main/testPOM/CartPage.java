@@ -3,11 +3,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CartPage extends BasePage {
 
     private WebDriver driver;
+    private WebDriverWait wait;
 
 
     @FindBy(xpath = "//input[@value='Checkout' and @class='btn btn-success']")
@@ -16,18 +18,30 @@ public class CartPage extends BasePage {
 
     public CartPage() {
         this.driver = getDriver();
+        this.wait = getWait();
         PageFactory.initElements(driver, this);
+    }
+
+    public WebElement plusButton(String itemName) {
+        return driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-plus']"));
+
+    }
+
+    public WebElement minusButton(String itemName) {
+        return driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-minus']"));
     }
 
     public void plusItem(String itemName, int times) {
         for (int i = 0; i < times; i++) {
-            driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-plus']")).click();
+            wait.until(ExpectedConditions.visibilityOf(plusButton(itemName)));
+            plusButton(itemName).click();
         }
     }
 
     public void minusItem(String itemName, int times) {
         for (int i = 0; i < times; i++) {
-            driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-minus']")).click();
+            wait.until(ExpectedConditions.visibilityOf(minusButton(itemName)));
+            minusButton(itemName).click();
         }
     }
 

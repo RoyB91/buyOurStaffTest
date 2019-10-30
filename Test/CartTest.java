@@ -9,6 +9,7 @@ class CartTest {
 
     private CartPage cartPage = new CartPage();
     private IndexPage indexPage = new IndexPage();
+    private LoginPage loginPage = new LoginPage();
 
 
     @Test
@@ -29,6 +30,7 @@ class CartTest {
     @ParameterizedTest
     @CsvFileSource(resources = "resources/addItemTestData.csv", numLinesToSkip = 1)
     public void addItemWithValidUser(String categoryName, String itemName) {
+        loginPage.loginWitValidData();
         indexPage.addSelectedItemToCart(categoryName, itemName, 1);
         indexPage.openCart();
         assertTrue(cartPage.itemNameField(itemName).isDisplayed());
@@ -40,10 +42,12 @@ class CartTest {
     @ParameterizedTest
     @CsvFileSource(resources = "resources/increaseItemTestData.csv", numLinesToSkip = 1)
     public void increaseAmountOfItemInCart(String categoryName, String itemName, int countToAdd, int countPress, String expected) {
+        loginPage.loginWitValidData();
+
         indexPage.addSelectedItemToCart(categoryName, itemName, countToAdd);
         indexPage.openCart();
         cartPage.plusItem(itemName, countPress);
-        assertEquals(expected, cartPage.getItemCount(itemName));
+        assertEquals(expected, cartPage.getItemCount(itemName).getText());
 
         cartPage.deleteItem(itemName);
     }
@@ -51,10 +55,12 @@ class CartTest {
     @ParameterizedTest
     @CsvFileSource(resources = "resources/decreaseItemTestData.csv", numLinesToSkip = 1)
     public void decreaseAmountOfItemInCart(String categoryName, String itemName, int countToAdd, int countPress, String expected) {
+        loginPage.loginWitValidData();
+
         indexPage.addSelectedItemToCart(categoryName, itemName, countToAdd);
         indexPage.openCart();
         cartPage.minusItem(itemName, countPress);
-        assertEquals(expected, cartPage.getItemCount(itemName));
+        assertEquals(expected, cartPage.getItemCount(itemName).getText());
 
         cartPage.deleteItem("Amazon Fire HD 8");
 
@@ -63,6 +69,8 @@ class CartTest {
     @ParameterizedTest
     @CsvFileSource(resources = "resources/deleteItemTestData.csv", numLinesToSkip = 1)
     public void deleteItemInCart(String categoryName, String itemName, int countToAdd) {
+        loginPage.loginWitValidData();
+
         indexPage.addSelectedItemToCart(categoryName, itemName, countToAdd);
         indexPage.openCart();
         cartPage.deleteItem(itemName);
@@ -72,6 +80,8 @@ class CartTest {
     @ParameterizedTest
     @CsvFileSource(resources = "resources/deleteItemTestData.csv", numLinesToSkip = 2)
     public void deleteItemWithMinusButtonInCart(String categoryName, String itemName, int countToAdd, int countPress) {
+        loginPage.loginWitValidData();
+
         indexPage.addSelectedItemToCart(categoryName, itemName, countToAdd);
         indexPage.openCart();
         cartPage.minusItem(itemName, countPress);
