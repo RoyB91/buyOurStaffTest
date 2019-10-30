@@ -3,8 +3,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import static org.junit.jupiter.api.Assertions.*;
 
-
-public class Register {
+public class RegisterTest {
 
     private RegisterPage registerPage = new RegisterPage();
     private IndexPage indexPage = new IndexPage();
