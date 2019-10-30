@@ -8,6 +8,21 @@ public class RegisterTest {
     private RegisterPage registerPage = new RegisterPage();
     private IndexPage indexPage = new IndexPage();
     private Util util = new Util();
+    private String takenUsername = "admin";
+    String username = util.generateString();
+    String password = util.generateString();
+
+    @Test
+    public void registerSuccessfully() {
+
+        registerPage.directToRegisterPage();
+        registerPage.fillUsernameField(username);
+        registerPage.fillPasswordField(password);
+        registerPage.clickRegisterButton();
+
+        assertTrue(util.isElementDisplayed(indexPage.getLoginTab()));
+
+    }
 
     @ParameterizedTest
     @CsvFileSource(resources = "resources/RegisterData.csv", numLinesToSkip = 1)
@@ -22,17 +37,14 @@ public class RegisterTest {
     }
 
     @Test
-    public void registerSuccessfully() {
-
-        String username = util.generateString();
-        String password = util.generateString();
+    public void registerTakenUsername() {
 
         registerPage.directToRegisterPage();
-        registerPage.fillUsernameField(username);
+        registerPage.fillUsernameField(takenUsername);
         registerPage.fillPasswordField(password);
         registerPage.clickRegisterButton();
 
-        assertTrue(util.isElementDisplayed(indexPage.getLoginTab()));
+        assertTrue(util.isElementDisplayed(registerPage.getErrorMessage()));
 
     }
 
