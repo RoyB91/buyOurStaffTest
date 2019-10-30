@@ -35,4 +35,11 @@ public class CheckOutPageTest {
         Assert.assertEquals(page.getValidationmessage(),"Please fill out this field.");
         page.deleteItem();
     }
+
+    @Test
+    void payWithPayPal(){
+        page.checkOutLogin();
+        page.payWithPayPal();
+        Assert.assertTrue(page.getPayPalButton().isDisplayed());
+    }
 }

@@ -6,6 +6,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+
 public class CheckoutPage extends BasePage{
 
     private WebDriver driver;
@@ -37,10 +39,17 @@ public class CheckoutPage extends BasePage{
     @FindBy(xpath ="//div[@id='buttons-container']/div/div[2]/div")
     private WebElement visaButton;
 
-
+    @FindBy(xpath ="//img[@alt='PayPal']")
+    private WebElement payPalButton;
 
     @FindBy(id = "submit-button")
     private WebElement submitButton;
+
+    @FindBy(id = "btnLogin")
+    private WebElement payPalSubmitButton;
+
+    @FindBy(className = "paypal-checkout-continue")
+    private WebElement payPalContinue;
 
 
 
@@ -91,6 +100,11 @@ public class CheckoutPage extends BasePage{
         checkoutButton.click();
     }
 
+    public void payWithPayPal(){
+        driver.navigate().to(getBaseURL()+"payment");
+        driver.switchTo().frame(0);
+    }
+
     public WebElement getNameField() {
         return nameField;
     }
@@ -109,6 +123,10 @@ public class CheckoutPage extends BasePage{
     public WebElement getShippingAddressField() {
         return shippingAddressField;
     }
+
+    public WebElement getPayPalButton() { return payPalButton; }
+
+    public WebElement getPayPalSubmitButton() { return payPalSubmitButton; }
 
     public WebElement getPaymentPageHeader() { return paymentPageHeader; }
 
