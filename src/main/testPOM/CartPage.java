@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -55,6 +56,15 @@ public class CartPage extends BasePage {
 
     public WebElement itemNameField(String itemName) {
         return driver.findElement(By.xpath("//*[text()='" + itemName + "']"));
+    }
+
+    public boolean isItemOnPage(String itemName) {
+        try {
+            driver.findElement(By.xpath("//*[text()='" + itemName + "']"));
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public WebElement getCheckoutButton() {

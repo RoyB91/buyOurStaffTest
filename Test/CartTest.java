@@ -77,18 +77,18 @@ class CartTest {
         indexPage.addSelectedItemToCart(categoryName, itemName, countToAdd);
         indexPage.openCart();
         cartPage.deleteItem(itemName);
-        assertFalse(cartPage.itemNameField("Amazon Fire HD 8").isDisplayed());
+        assertFalse(cartPage.isItemOnPage(itemName));
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "resources/deleteItemTestData.csv", numLinesToSkip = 2)
+    @CsvFileSource(resources = "resources/deleteItemsWithButtonTestData.csv", numLinesToSkip = 1)
     public void deleteItemWithMinusButtonInCart(String categoryName, String itemName, int countToAdd, int countPress) {
         loginPage.loginWitValidData();
 
         indexPage.addSelectedItemToCart(categoryName, itemName, countToAdd);
         indexPage.openCart();
         cartPage.minusItem(itemName, countPress);
-        assertFalse(cartPage.itemNameField("Amazon Fire HD 8").isDisplayed());
+        assertFalse(cartPage.isItemOnPage(itemName));
     }
 
 
