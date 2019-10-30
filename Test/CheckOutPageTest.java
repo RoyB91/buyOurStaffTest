@@ -23,8 +23,7 @@ public class CheckOutPageTest {
     void payWithVisaTest(){
         page.checkOutLogin();
         page.payWithVisa();
-        page.getSubmitButton();
-        Assert.assertTrue(page.getSubmitButton().isDisplayed());
+        Assert.assertTrue(page.getVisaButton().isDisplayed());
         page.deleteItem();
     }
 
@@ -41,5 +40,6 @@ public class CheckOutPageTest {
         page.checkOutLogin();
         page.payWithPayPal();
         Assert.assertTrue(page.getPayPalButton().isDisplayed());
+        page.deleteItem();
     }
 }

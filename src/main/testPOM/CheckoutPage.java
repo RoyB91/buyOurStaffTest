@@ -91,8 +91,8 @@ public class CheckoutPage extends BasePage{
     public void payWithVisa(){
         driver.navigate().to(getBaseURL()+"payment");
         driver.switchTo().frame(0);
-        wait.until(ExpectedConditions.visibilityOf(visaButton)).click();
-        driver.switchTo().frame(0);
+        //wait.until(ExpectedConditions.visibilityOf(visaButton)).click();
+        //driver.switchTo().frame(0);
     }
 
     public void emptyField(){
@@ -127,6 +127,8 @@ public class CheckoutPage extends BasePage{
     public WebElement getPayPalButton() { return payPalButton; }
 
     public WebElement getPayPalSubmitButton() { return payPalSubmitButton; }
+
+    public WebElement getVisaButton() { return visaButton; }
 
     public WebElement getPaymentPageHeader() { return paymentPageHeader; }
 
