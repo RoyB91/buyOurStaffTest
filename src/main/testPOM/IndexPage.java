@@ -3,10 +3,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class IndexPage extends BasePage {
 
     private WebDriver driver;
+    private WebDriverWait wait;
 
     @FindBy(xpath = "//li[@class='nav-item']//*[text() = 'Shop']")
     private WebElement shopTab;
@@ -39,6 +42,7 @@ public class IndexPage extends BasePage {
 
     public IndexPage() {
         this.driver = getDriver();
+        this.wait = getWait();
         PageFactory.initElements(driver, this);
     }
 
@@ -90,7 +94,7 @@ public class IndexPage extends BasePage {
 
 
     public void openIndexPage() {
-        driver.navigate().to(getBaseURL());
+        driver.navigate().to(getBaseURL()+"index");
     }
 
 
@@ -104,6 +108,15 @@ public class IndexPage extends BasePage {
     }
 
     public void openCart() {
+        wait.until(ExpectedConditions.elementToBeClickable(cartIcon));
         cartIcon.click();
     }
+
+    public  void addSelectedItemToCart(String categoryName,String itemName){
+        openIndexPage();
+        selectCategory(categoryName);
+        selectSpecificItem(itemName).click();
+
+    }
+
 }

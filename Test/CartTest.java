@@ -21,17 +21,61 @@ class CartTest {
         indexPage.addItemToCart("Amazon Fire");
         assertTrue(indexPage.selectSpecificItem("Amazon Fire").isEnabled());
 
+
+
     }
 
     @Test
-    public void addItemWithValidUser(){
-        indexPage.openIndexPage();
-        indexPage.selectCategory("Smartphone");
-        indexPage.addItemToCart("iPhone 11");
+    public void addItemWithValidUser() {
+        indexPage.addSelectedItemToCart("Tablet", "Amazon Fire HD 8");
         indexPage.openCart();
-        assertTrue(indexPage.selectSpecificItem("iPhone 11").isDisplayed());
+        assertTrue(cartPage.itemNameField("Amazon Fire HD 8").isDisplayed());
+
+        cartPage.deleteItem("Amazon Fire HD 8");
 
     }
+
+    @Test
+    public void increaseAmountOfItemInCart() {
+        indexPage.addSelectedItemToCart("Tablet", "Amazon Fire HD 8");
+        indexPage.openCart();
+        cartPage.plusItem("Amazon Fire HD 8");
+        assertEquals(2, cartPage.getItemCount("Amazon Fire HD 8"));
+
+        cartPage.deleteItem("Amazon Fire HD 8");
+    }
+
+    @Test
+    public void decreaseAmountOfItemInCart() {
+        indexPage.addSelectedItemToCart("Tablet", "Amazon Fire HD 8");
+        indexPage.addSelectedItemToCart("Tablet", "Amazon Fire HD 8");
+        indexPage.openCart();
+        cartPage.minusItem("Amazon Fire HD 8");
+        assertEquals(1, cartPage.getItemCount("Amazon Fire HD 8"));
+
+        cartPage.deleteItem("Amazon Fire HD 8");
+
+    }
+
+    @Test
+    public void deleteItemInCart() {
+        indexPage.addSelectedItemToCart("Tablet", "Amazon Fire HD 8");
+        indexPage.openCart();
+        cartPage.deleteItem("Amazon Fire HD 8");
+        assertFalse(cartPage.itemNameField("Amazon Fire HD 8").isDisplayed());
+    }
+
+    @Test
+    public void deleteItemWithMinusButtonInCart() {
+        indexPage.addSelectedItemToCart("Tablet", "Amazon Fire HD 8");
+        indexPage.addSelectedItemToCart("Tablet", "Amazon Fire HD 8");
+        indexPage.openCart();
+        cartPage.minusItem("Amazon Fire HD 8");
+        cartPage.minusItem("Amazon Fire HD 8");
+        assertFalse(cartPage.itemNameField("Amazon Fire HD 8").isDisplayed());
+    }
+
+
 
 
 }

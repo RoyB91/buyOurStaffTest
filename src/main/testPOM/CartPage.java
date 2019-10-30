@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CartPage extends BasePage {
 
@@ -18,20 +19,24 @@ public class CartPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public WebElement plusItemCount(String itemName) {
-        return driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-plus']"));
+    public void plusItem(String itemName) {
+        driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-plus']")).click();
     }
 
-    public WebElement minusItemCount(String itemName) {
-        return driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-minus']"));
+    public void minusItem(String itemName) {
+        driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-minus']")).click();
     }
 
-    public WebElement deleteItem(String itemName) {
-        return driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-trash']"));
+    public void deleteItem(String itemName) {
+        driver.findElement(By.xpath("//*[text()='" + itemName + "']/parent::*//*[@class='glyphicon glyphicon-trash']")).click();
     }
 
     public WebElement getItemCount(String itemName) {
         return driver.findElement(By.xpath("//*[text()='" + itemName + "']/following-sibling::td[1]"));
+    }
+
+    public WebElement itemNameField(String itemName) {
+        return driver.findElement(By.xpath("//*[text()='" + itemName + "']"));
     }
 
     public WebElement getCheckoutButton() {
