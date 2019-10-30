@@ -1,0 +1,2 @@
+categoryName,itemName        ,countToAdd,countPress,expected
+Tablet      ,Amazon Fire HD 8,1         ,1         ,1
